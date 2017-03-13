@@ -3,9 +3,12 @@ package org.ahocorasick.trie;
 import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -63,7 +66,12 @@ public class TrieTest
     @Test
     public void pressureTest() throws Exception
     {
-        BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/resource/dictionary.txt")));
+        String file = "E:\\eclipse\\workspace\\aho-corasick\\src\\test\\resource\\dictionary.txt";
+        File testFile = new File(file);
+        if (!testFile.exists()) {
+            throw new FileNotFoundException("File " + file + " does not exist");
+        }
+        BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("dictionary.txt")));
         String line;
         Trie asciiTrie = new Trie(true);
         Trie unicodeTrie = new Trie(false);
