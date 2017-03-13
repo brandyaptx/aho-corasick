@@ -3,8 +3,6 @@ package org.ahocorasick.trie;
 import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.Iterator;
@@ -66,11 +64,6 @@ public class TrieTest
     @Test
     public void pressureTest() throws Exception
     {
-        String file = "E:\\eclipse\\workspace\\aho-corasick\\src\\test\\resource\\dictionary.txt";
-        File testFile = new File(file);
-        if (!testFile.exists()) {
-            throw new FileNotFoundException("File " + file + " does not exist");
-        }
         BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("dictionary.txt")));
         String line;
         Trie asciiTrie = new Trie(true);
@@ -96,7 +89,7 @@ public class TrieTest
         System.out.printf("unicodeTrie adding time:%dms%n", System.currentTimeMillis() - start);
 
         int pressure = 100000;
-        String text = "The quick brown fox jumps over the lazy dog";
+        String text = "http://share.iclient.ifeng.com/news/sharenews.f?aid=82969287/";
 
         start = System.currentTimeMillis();
         System.out.println(asciiTrie.parseText(text));
